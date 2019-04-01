@@ -39,8 +39,11 @@ function startPrompt(choices){
 
     inquirer
     .prompt(questions)
-    .then(answer => {
-
+    .then(answers => {
+        const item = answers.whatToBuy;
+        console.log("this is what you selected: " + item);
+        const quantity = answers.numOfItems;
+        console.log("this is how many you wanted: " + quantity);
 
                 
     })
