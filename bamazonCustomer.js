@@ -2,15 +2,22 @@ const database = require('./database/config');
 
 const inquirer = require('inquirer');
 
-database.query("SELECT * FROM products", function(err, result){
-    if (err) throw err; 
-    const productNames = [];
-    for(let i = 0; i < result.length; i++){
-        console.log("ID: " + result[i].id + " PRODUCT: " + result[i].product + " PRICE: " + result[i].price);
-        productNames.push(result[i].product);
-    }
-    startPrompt(productNames);
-})
+function drawTable(){
+    database.query("SELECT * FROM products", function(err, result){
+        if (err) throw err; 
+        const productNames = [];
+        console.log("\n\n" + "     ==========================================");
+        console.log("     HERE'S WHAT BAMAZON HAS IN STOCK RIGHT NOW");
+        console.log("     ==========================================" + "\n");
+        for(let i = 0; i < result.length; i++){
+            console.log("     ID: " + result[i].id + "     PRODUCT: " + result[i].product + "     PRICE: " + result[i].price);
+            productNames.push(result[i].product);
+        }
+        console.log("\n\n");
+        startPrompt(productNames);
+    });
+};
+
 
 function startPrompt(choices){
 
@@ -25,16 +32,18 @@ function startPrompt(choices){
         type: 'input',
         name: 'numOfItems',
         message: 'How many would you like to buy?',
-        when: function(answers) {
-            return answers.programs == 'Look up a movie';
+        when: function(answer) {
+            return answer.whatToBuy;
         }
     }];
 
     inquirer
     .prompt(questions)
-    .then(answers => {
+    .then(answer => {
 
 
                 
     })
 };
+
+drawTable();
