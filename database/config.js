@@ -1,5 +1,5 @@
 const mysql = require('mysql');
-const password = require('./mysql-pw');
+const password = require('./pw');
 
 const dataConnection = mysql.createConnection({
     host     : 'localhost',
