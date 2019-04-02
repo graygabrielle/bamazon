@@ -6,11 +6,11 @@ function drawTable(){
     database.query("SELECT * FROM products", function(err, result){
         if (err) throw err; 
         const productNames = [];
-        console.log("\n\n" + "     ==========================================");
-        console.log("     HERE'S WHAT BAMAZON HAS IN STOCK RIGHT NOW");
-        console.log("     ==========================================" + "\n");
+        console.log("\n\n" + "     ========================================================================================");
+        console.log("                            HERE'S WHAT BAMAZON HAS IN STOCK RIGHT NOW");
+        console.log("     ========================================================================================" + "\n");
         for(let i = 0; i < result.length; i++){
-            console.log("     ID: " + result[i].id + "     PRODUCT: " + result[i].product + "     PRICE: $" + result[i].price + "\n");
+            console.log("     DEPARTMENT: " + result[i].department + "     ID: " + result[i].id + "     PRODUCT: " + result[i].product + "     PRICE: $" + result[i].price + "\n");
             productNames.push(result[i].product);
         }
         startPrompt(productNames);
