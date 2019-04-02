@@ -13,7 +13,6 @@ function drawTable(){
             console.log("     ID: " + result[i].id + "     PRODUCT: " + result[i].product + "     PRICE: $" + result[i].price + "\n");
             productNames.push(result[i].product);
         }
-        console.log("\n\n");
         startPrompt(productNames);
     });
 };
@@ -56,7 +55,7 @@ function startPrompt(choices){
             }
             else if(quantity==0){
                 console.log('\n     Error: You did not enter a valid number.');
-                whatNext();
+                return whatNext();
             }
             else{
                 console.log(`\n     ${quantity} ${item}s will cost $${total}`);
