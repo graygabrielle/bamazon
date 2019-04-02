@@ -40,16 +40,22 @@ function startPrompt(choices){
     .prompt(questions)
     .then(answers => {
         let price;
+        let stock;
         const item = answers.whatToBuy;
-        database.query("SELECT price FROM products WHERE ?", 
+        database.query("SELECT * FROM products WHERE ?", 
         {
             product: item
         }, 
         function(err, result){
             if (err) throw err;
             price = result[0].price;
+            stock = result[0].stock;
             const quantity = answers.numOfItems;
             const total = quantity*price;
+            if(stock<quantity){
+                console.log(`\n     Sorry, we only have ${stock} of this item left.`);
+                return whatNext();
+            }
             if(quantity==1){
                 console.log(`\n     One ${item} costs $${price}`);
             }
