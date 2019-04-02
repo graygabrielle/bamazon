@@ -53,6 +53,10 @@ function startPrompt(choices){
             const quantity = answers.numOfItems;
             const total = quantity*price;
             if(stock<quantity){
+                if(stock==0){
+                    console.log("\n     Sorry, this item is currently out of stock. Please check back later!");
+                }
+                else
                 console.log(`\n     Sorry, we only have ${stock} of this item left.`);
                 return whatNext();
             }
@@ -66,15 +70,13 @@ function startPrompt(choices){
             else{
                 console.log(`\n     ${quantity} ${item}s will cost $${total}`);
             }
-            areYouSure(quantity, item);
+            areYouSure(quantity, item, stock);
         })
-        
-
-
+    
     })
 };
 
-function areYouSure(number, product){
+function areYouSure(number, product, available){
     const questions = 
     [{
         type: 'list',
@@ -88,14 +90,17 @@ function areYouSure(number, product){
     .then(answer => {
         switch (answer.whatToDo){
             case 'Confirm purchase':
-            if(number>1){
+            database.query(`UPDATE products SET stock = ${available-number} WHERE ?`, {product: product}, 
+            function(err){
+                if(err) throw err;
+            })
+            if(number>1)
                 product = product + "s";
-            }
-            console.log(`\n     Congratulations on successfully purchasing ${number} ${product}!`);
+            console.log(`\n     Congratulations on successfully purchasing ${number} ${product}!`)
             whatNext();
-            break;
+            break;    
 
-            case 'Change purchase':
+            case 'Change purchase':    
             drawTable();
             break;
 
