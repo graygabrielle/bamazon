@@ -10,7 +10,7 @@ function drawTable(){
         console.log("     HERE'S WHAT BAMAZON HAS IN STOCK RIGHT NOW");
         console.log("     ==========================================" + "\n");
         for(let i = 0; i < result.length; i++){
-            console.log("     ID: " + result[i].id + "     PRODUCT: " + result[i].product + "     PRICE: $" + result[i].price);
+            console.log("     ID: " + result[i].id + "     PRODUCT: " + result[i].product + "     PRICE: $" + result[i].price + "\n");
             productNames.push(result[i].product);
         }
         console.log("\n\n");
@@ -25,13 +25,13 @@ function startPrompt(choices){
     [{
         type: 'list',
         name: 'whatToBuy',
-        message: 'What would you like to buy?',
+        message: '\nWhat would you like to buy?',
         choices: choices
     },
     {
         type: 'input',
         name: 'numOfItems',
-        message: 'How many would you like to buy?',
+        message: '\nHow many would you like to buy?',
         when: function(answer) {
             return answer.whatToBuy;
         }
@@ -52,13 +52,14 @@ function startPrompt(choices){
             const quantity = answers.numOfItems;
             const total = quantity*price;
             if(quantity==1){
-                console.log(`One ${item} costs $${price}`);
+                console.log(`\n     One ${item} costs $${price}`);
             }
             else if(quantity==0){
-                console.log('Please enter a valid number.');
+                console.log('\n     Error: You did not enter a valid number.');
+                whatNext();
             }
             else{
-                console.log(`${quantity} ${item}s will cost $${total}`);
+                console.log(`\n     ${quantity} ${item}s will cost $${total}`);
             }
             areYouSure(quantity, item);
         })
@@ -73,7 +74,7 @@ function areYouSure(number, product){
     [{
         type: 'list',
         name: 'whatToDo',
-        message: 'What would you like to do?',
+        message: '\nWhat would you like to do?',
         choices: ['Confirm purchase', 'Change purchase', 'Quit']
     }];
 
@@ -85,7 +86,7 @@ function areYouSure(number, product){
             if(number>1){
                 product = product + "s";
             }
-            console.log(`Congratulations on successfully purchasing ${number} ${product}!`);
+            console.log(`\n     Congratulations on successfully purchasing ${number} ${product}!`);
             whatNext();
             break;
 
@@ -105,7 +106,7 @@ function whatNext(){
     [{
         type: 'list',
         name: 'whatNext',
-        message: 'What would you like to do next?',
+        message: '\nWhat would you like to do next?',
         choices: ['Make another purchase', 'Quit']
     }];
 
