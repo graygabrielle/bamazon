@@ -50,7 +50,7 @@ function startPrompt(choices){
             if (err) throw err;
             price = result[0].price;
             stock = result[0].stock;
-            const quantity = answers.numOfItems;
+            const quantity = parseInt(answers.numOfItems);
             const total = quantity*price;
             if(stock<quantity){
                 if(stock==0){
@@ -61,9 +61,9 @@ function startPrompt(choices){
                 return whatNext();
             }
             if(quantity==1){
-                console.log(`\n     One ${item} costs $${price}`);
+                console.log(`\n     One ${item} will cost $${price}`);
             }
-            else if(quantity==0){
+            else if(quantity==0 || Number.isNaN(quantity)){
                 console.log('\n     Error: You did not enter a valid number.');
                 return whatNext();
             }
