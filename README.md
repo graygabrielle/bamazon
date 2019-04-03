@@ -13,11 +13,11 @@ Check out the demo video to see how it all works!
 
 #### Screenshot
 
-![Screenshot](./bamazon-screenshot.png)
+![Screenshot](./assets/bamazon-screenshot.png)
 
 #### Demo video
 
-![Video](./assets/bamazon-demo-small.mov)
+![Video](https://drive.google.com/open?id=1i8G5Fme_uFfwe07S9O_68mgLfhBiYAk8)
 
 
 ## Contributing & Support
