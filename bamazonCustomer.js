@@ -7,7 +7,7 @@ function drawTable(){
         if (err) throw err; 
         const productNames = [];
         console.log("\n\n" + "     ========================================================================================");
-        console.log("                            HERE'S WHAT BAMAZON HAS IN STOCK RIGHT NOW");
+        console.log("                            HERE'S WHAT BAMAZON HAS FOR SALE RIGHT NOW");
         console.log("     ========================================================================================" + "\n\n");
         for(let i = 0; i < result.length; i++){
             console.log("     DEPARTMENT: " + result[i].department + "     ID: " + result[i].id + "     PRODUCT: " + result[i].product + "     PRICE: $" + result[i].price + "\n");
