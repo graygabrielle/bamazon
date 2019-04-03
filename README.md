@@ -17,7 +17,7 @@ Check out the demo video to see how it all works!
 
 #### Demo video
 
-(https://drive.google.com/open?id=1i8G5Fme_uFfwe07S9O_68mgLfhBiYAk8)
+(https://drive.google.com/file/d/10JYqXYN-DPGNOUPT4VXwexAicZ4tp4VR/view)
 
 
 ## Contributing & Support
